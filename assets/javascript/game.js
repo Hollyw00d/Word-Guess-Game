@@ -59,8 +59,10 @@
         this.addLettersInGuesses = function() {
 
             var singleGrammyArtistArr = this.convertSingleGrammyWinnerIntoArr();
-            var emptySpaceArr = this.createEmptySpacesForGrammyWinnerGuessArr();
-
+            //var emptySpaceArr = this.createEmptySpacesForGrammyWinnerGuessArr();
+            var emptySpaceArr = singleGrammyArtistArr.map(function() {
+                return ' ___ ';
+            });
 
 
             var grammyWinnerGuess = this.grammyWinnerGuess;
