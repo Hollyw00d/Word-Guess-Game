@@ -70,11 +70,9 @@
 
             document.addEventListener('keyup', function (event) { 
                 var key = event.key || event.keyCode;
-                var returnValue = false; 
 
                 var pos = singleGrammyArtistArr.indexOf(key);
                 if(pos >= 0) {
-
 
                     singleGrammyArtistArr.map(function(winner, index) {
                         if(winner === key) {
