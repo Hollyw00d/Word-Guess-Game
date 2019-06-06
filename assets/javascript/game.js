@@ -19,6 +19,8 @@
         // Grammy Winner Indexes Array
         this.grammyWinnerIndexesArr = [];
 
+        //this.createEmptySpacesForGrammyWinnerGuessArr = [];
+
         // Properties 
         this.gameStarted = false;
         this.grammyWinnerArrSelected = Math.floor(Math.random() * this.grammyWinnersArr.length);
@@ -36,15 +38,9 @@
 
         this.createEmptySpacesForGrammyWinnerGuessArr = function() {
 
-
-            var grammyWinnerCharacterTotal = this.convertSingleGrammyWinnerIntoArr().length;
-
             for(var i = 0; i < (this.convertSingleGrammyWinnerIntoArr().length); i++) {
                 this.grammyWinnerEmptySpacesArr.push('___');
-                console.log(i + ': ' + this.grammyWinnerEmptySpacesArr[i]);
             }
-
-            console.log(this.grammyWinnerEmptySpacesArr);
             
             this.grammyWinnerGuess.innerHTML = this.grammyWinnerEmptySpacesArr.map(function(winner) {
                 return '___ '
@@ -59,16 +55,13 @@
         this.addLettersInGuesses = function() {
 
             var singleGrammyArtistArr = this.convertSingleGrammyWinnerIntoArr();
-            //var emptySpaceArr = this.createEmptySpacesForGrammyWinnerGuessArr();
+
             var emptySpaceArr = singleGrammyArtistArr.map(function() {
                 return ' ___ ';
             });
 
-
             var grammyWinnerGuess = this.grammyWinnerGuess;
             var grammyWinnerIndexesArr = this.grammyWinnerIndexesArr;
-
-    
 
             document.addEventListener('keyup', function (event) { 
                 var key = event.key || event.keyCode;
