@@ -84,9 +84,7 @@
                     });
 
 
-
-
-                    grammyWinnerGuess.innerHTML = singleGrammyArtistArr.map(function(item) {
+                    grammyWinnerGuess.innerHTML = emptySpaceArr.map(function(item) {
                         return item;
                     }).join('');
 
