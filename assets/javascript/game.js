@@ -44,10 +44,6 @@
 
             console.log(this.grammyWinnerEmptySpacesArr);
             
-            // this.grammyWinnerGuess.innerHTML = this.grammyWinnerEmptySpacesArr.map(function(winner) {
-            //     console.log('___');
-            //     return '___ ';
-            // }).join('');
             this.grammyWinnerGuess.innerHTML = this.grammyWinnerEmptySpacesArr.join('');
 
             return this.grammyWinnerEmptySpacesArr;
