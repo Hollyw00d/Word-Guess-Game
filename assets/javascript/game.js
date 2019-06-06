@@ -39,17 +39,18 @@
         this.createEmptySpacesForGrammyWinnerGuessArr = function() {
 
             for(var i = 0; i < (this.convertSingleGrammyWinnerIntoArr().length); i++) {
-                this.grammyWinnerEmptySpacesArr.push('___');
+                this.grammyWinnerEmptySpacesArr.push(' ___ ');
             }
-            
-            this.grammyWinnerGuess.innerHTML = this.grammyWinnerEmptySpacesArr.map(function(winner) {
-                return '___ '
-            }).join('');
 
-            var emptySpaceArr = this.grammyWinnerEmptySpacesArr.map(function(winner) {
-                return '___ '
-            });
-            return emptySpaceArr;
+            console.log(this.grammyWinnerEmptySpacesArr);
+            
+            // this.grammyWinnerGuess.innerHTML = this.grammyWinnerEmptySpacesArr.map(function(winner) {
+            //     console.log('___');
+            //     return '___ ';
+            // }).join('');
+            this.grammyWinnerGuess.innerHTML = this.grammyWinnerEmptySpacesArr.join('');
+
+            return this.grammyWinnerEmptySpacesArr;
         };
 
         this.addLettersInGuesses = function() {
@@ -97,5 +98,8 @@
     var hangmanGameObj = new HangManGame();
     console.log(hangmanGameObj.convertSingleGrammyWinnerIntoArr());
     console.log(hangmanGameObj.createEmptySpacesForGrammyWinnerGuessArr());
+
+    
+
     hangmanGameObj.addLettersInGuesses();
 })();
