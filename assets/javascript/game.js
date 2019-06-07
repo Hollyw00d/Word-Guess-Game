@@ -22,7 +22,6 @@
         //this.createEmptySpacesForGrammyWinnerGuessArr = [];
 
         // Properties 
-        this.gameStarted = false;
         this.grammyWinnerArrSelected = Math.floor(Math.random() * this.grammyWinnersArr.length);
         this.instructions = document.getElementById('instructions');
         this.wins = document.getElementById('wins');
@@ -59,8 +58,20 @@
 
             var grammyWinnerGuess = this.grammyWinnerGuess;
             var grammyWinnerIndexesArr = this.grammyWinnerIndexesArr;
+            var lettersGuessed = [];
+            var lettersAlreadyGuessed = this.lettersAlreadyGuessed;
 
-            document.addEventListener('keyup', function (event) { 
+            function removeDuplicatesFromArray(arr) {
+                var arrNoDuplicates = arr.filter(function(item, index, arr) {
+                    return arr.indexOf(item) >= index;
+                });   
+                return arrNoDuplicates;               
+            }
+
+            console.log(removeDuplicatesFromArray(singleGrammyArtistArr));
+
+            document.addEventListener('keyup', function (event) {
+
                 var key = event.key || event.keyCode;
 
                 var pos = singleGrammyArtistArr.indexOf(key);
@@ -73,16 +84,17 @@
                         }
                     });
 
-
                     grammyWinnerGuess.innerHTML = emptySpaceArr.map(function(item) {
                         return item;
                     }).join('');
 
+                    lettersGuessed.push(key);
+
+                    lettersAlreadyGuessed.innerHTML = lettersGuessed.join(' ');
                 }
                 else {
-                
-                }
-                
+    
+                } 
                
             });
         };
@@ -92,10 +104,6 @@
     }
 
     var hangmanGameObj = new HangManGame();
-    console.log(hangmanGameObj.convertSingleGrammyWinnerIntoArr());
-    console.log(hangmanGameObj.createEmptySpacesForGrammyWinnerGuessArr());
-
-    
-
     hangmanGameObj.addLettersInGuesses();
+
 })();
