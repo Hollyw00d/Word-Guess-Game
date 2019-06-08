@@ -62,14 +62,14 @@
             var lettersGuessed = [];
             var lettersAlreadyGuessed = this.lettersAlreadyGuessed;
 
-            function removeDuplicatesFromArray(arr) {
-                var arrNoDuplicates = arr.filter(function(item, index, arr) {
-                    return arr.indexOf(item) >= index;
-                });   
-                return arrNoDuplicates;               
-            }
+            // function removeDuplicatesFromArray(arr) {
+            //     var arrNoDuplicates = arr.filter(function(item, index, arr) {
+            //         return arr.indexOf(item) >= index;
+            //     });   
+            //     return arrNoDuplicates;               
+            // }
 
-            console.log(removeDuplicatesFromArray(singleGrammyArtistArr));
+            console.log(singleGrammyArtistArr);
 
             document.addEventListener('keyup', function (event) {
 
@@ -95,7 +95,9 @@
                         return item;
                     }).join('');
 
-                    lettersGuessed.push(key);
+                    if(lettersGuessed.indexOf(key)) {
+                        lettersGuessed.push(key);   
+                    }
 
                     lettersAlreadyGuessed.innerHTML = lettersGuessed.join(' ');
                 }
