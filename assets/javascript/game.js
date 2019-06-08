@@ -60,13 +60,10 @@
             }
             
             var singleGrammyArtistArr = this.convertSingleGrammyWinnerIntoArr();
-
             var singleGrammyArtistTotalGuesses = arrUnique(singleGrammyArtistArr).length + 7;
-            
             var emptySpaceArr = singleGrammyArtistArr.map(function() {
                 return ' ___ ';
             });
-
             var grammyWinnerGuess = this.grammyWinnerGuess;
             var grammyWinnerIndexesArr = this.grammyWinnerIndexesArr;
             var lettersGuessed = [];
