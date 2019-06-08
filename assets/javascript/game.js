@@ -85,8 +85,10 @@
                 }
 
                 var key = event.key || event.keyCode;
-
                 var pos = singleGrammyArtistArr.indexOf(key);
+                hangmanGameObj.numberOfGuessesRemaining.innerHTML = singleGrammyArtistTotalGuesses;
+                --singleGrammyArtistTotalGuesses;
+
                 if(pos >= 0) {
 
                     singleGrammyArtistArr.map(function(winner, index) {
