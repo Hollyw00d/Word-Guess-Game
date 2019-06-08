@@ -13,6 +13,8 @@
             'Ray Charles'
         ];
 
+        this.started = false;
+
         // Grammy Winner Empty Spaces Array
         this.grammyWinnerEmptySpacesArr = [];
 
@@ -49,7 +51,6 @@
         };
 
         this.addLettersInGuesses = function() {
-
             var singleGrammyArtistArr = this.convertSingleGrammyWinnerIntoArr();
 
             var emptySpaceArr = singleGrammyArtistArr.map(function() {
@@ -72,6 +73,12 @@
 
             document.addEventListener('keyup', function (event) {
 
+                if(!hangmanGameObj.started) {
+                    hangmanGameObj.grammyWinnerGuess.innerHTML = emptySpaceArr.join('');
+                    hangmanGameObj.started = true;
+                    return;
+                }
+
                 var key = event.key || event.keyCode;
 
                 var pos = singleGrammyArtistArr.indexOf(key);
@@ -92,14 +99,9 @@
 
                     lettersAlreadyGuessed.innerHTML = lettersGuessed.join(' ');
                 }
-                else {
-    
-                } 
                
             });
-        };
-
-        
+        };   
 
     }
 
