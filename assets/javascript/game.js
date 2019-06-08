@@ -62,19 +62,14 @@
             var lettersGuessed = [];
             var lettersAlreadyGuessed = this.lettersAlreadyGuessed;
 
-            // function removeDuplicatesFromArray(arr) {
-            //     var arrNoDuplicates = arr.filter(function(item, index, arr) {
-            //         return arr.indexOf(item) >= index;
-            //     });   
-            //     return arrNoDuplicates;               
-            // }
-
             console.log(singleGrammyArtistArr);
 
             document.addEventListener('keyup', function (event) {
 
                 if(!hangmanGameObj.started) {
                     hangmanGameObj.grammyWinnerGuess.innerHTML = emptySpaceArr.join('');
+                    hangmanGameObj.instructions.classList.remove('h6');
+                    hangmanGameObj.instructions.classList.add('h5', 'font-italic');
                     hangmanGameObj.started = true;
                     return;
                 }
