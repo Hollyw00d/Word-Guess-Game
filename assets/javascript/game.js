@@ -83,33 +83,42 @@
                     hangmanGameObj.started = true;
                     return;
                 }
-
-                var key = event.key || event.keyCode;
-                var pos = singleGrammyArtistArr.indexOf(key);
-                hangmanGameObj.numberOfGuessesRemaining.innerHTML = singleGrammyArtistTotalGuesses;
-                --singleGrammyArtistTotalGuesses;
-
-                if(pos >= 0) {
-
-                    singleGrammyArtistArr.map(function(winner, index) {
-                        if(winner === key) {
-                            grammyWinnerIndexesArr.push(index);
-                            emptySpaceArr[index] = winner;  
+                if(hangmanGameObj.started) {
+                    var key = event.key || event.keyCode;
+                    var pos = singleGrammyArtistArr.indexOf(key);
+                    hangmanGameObj.numberOfGuessesRemaining.innerHTML = singleGrammyArtistTotalGuesses;
+                    --singleGrammyArtistTotalGuesses;
+    
+                    if(pos >= 0) {
+    
+                        singleGrammyArtistArr.map(function(winner, index) {
+                            if(winner === key) {
+                                grammyWinnerIndexesArr.push(index);
+                                emptySpaceArr[index] = winner;  
+                            }
+                        });
+    
+                        grammyWinnerGuess.innerHTML = emptySpaceArr.map(function(item) {
+                            return item;
+                        }).join('');
+    
+                        if(lettersGuessed.indexOf(key)) {
+                            lettersGuessed.push(key);   
                         }
-                    });
-
-                    grammyWinnerGuess.innerHTML = emptySpaceArr.map(function(item) {
-                        return item;
-                    }).join('');
-
-                    if(lettersGuessed.indexOf(key)) {
-                        lettersGuessed.push(key);   
+    
+                        lettersAlreadyGuessed.innerHTML = lettersGuessed.join(' ');
                     }
-
-                    lettersAlreadyGuessed.innerHTML = lettersGuessed.join(' ');
+    
                 }
+
                
             });
+
+
+
+
+
+
         };   
 
     }
