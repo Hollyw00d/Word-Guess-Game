@@ -70,6 +70,7 @@
                     hangmanGameObj.grammyWinnerGuess.innerHTML = emptySpaceArr.join('');
                     hangmanGameObj.instructions.classList.remove('h6');
                     hangmanGameObj.instructions.classList.add('h5', 'font-italic');
+                    hangmanGameObj.instructions.innerHTML = 'Game Started!';
                     hangmanGameObj.started = true;
                     return;
                 }
