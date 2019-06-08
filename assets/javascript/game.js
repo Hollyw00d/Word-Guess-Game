@@ -26,6 +26,7 @@
         // Properties 
         this.grammyWinnerArrSelected = Math.floor(Math.random() * this.grammyWinnersArr.length);
         this.instructions = document.getElementById('instructions');
+        this.subInstructions = document.getElementById('sub-instructions');
         this.wins = document.getElementById('wins');
         this.losses = document.getElementById('losses');
         this.grammyWinnerGuess = document.getElementById('grammy-winner-guess');
@@ -51,8 +52,17 @@
         };
 
         this.addLettersInGuesses = function() {
+            
+            function arrUnique(arr) {
+                return arr.filter(function(item, index){
+                    return arr.indexOf(item) >= index;
+                });
+            }
+            
             var singleGrammyArtistArr = this.convertSingleGrammyWinnerIntoArr();
 
+            var singleGrammyArtistTotalGuesses = arrUnique(singleGrammyArtistArr).length + 7;
+            
             var emptySpaceArr = singleGrammyArtistArr.map(function() {
                 return ' ___ ';
             });
@@ -63,6 +73,7 @@
             var lettersAlreadyGuessed = this.lettersAlreadyGuessed;
 
             console.log(singleGrammyArtistArr);
+            console.log(singleGrammyArtistTotalGuesses);
 
             document.addEventListener('keyup', function (event) {
 
@@ -71,6 +82,7 @@
                     hangmanGameObj.instructions.classList.remove('h6');
                     hangmanGameObj.instructions.classList.add('h5', 'font-italic');
                     hangmanGameObj.instructions.innerHTML = 'Game Started!';
+                    hangmanGameObj.subInstructions.classList.remove('d-none');
                     hangmanGameObj.started = true;
                     return;
                 }
