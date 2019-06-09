@@ -145,7 +145,8 @@
                     }
                     else if(singleGrammyArtistArrToString === arrWithGuessesToString) {
                         hangmanGameObj.subInstructions.innerHTML = '<strong>* You Win!</strong>';
-                        hangmanGameObj.loadVideo.innerHTML = '<iframe width="560" height="315" src="' + hangmanGameObj.grammyWinnersMultidimensionalArr[0][hangmanGameObj.grammyWinnerArrSelected] + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                        hangmanGameObj.loadVideo.innerHTML = '<iframe width="560" height="315" src="' + hangmanGameObj.grammyWinnersMultidimensionalArr[hangmanGameObj.grammyWinnerArrSelected][1] + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                        console.log(typeof hangmanGameObj.grammyWinnerArrSelected);
                     }
 
                 }
