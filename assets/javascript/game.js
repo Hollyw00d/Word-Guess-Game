@@ -121,11 +121,18 @@
     
                         grammyWinnerGuess.innerHTML = arrWithGuesses.join('');
                              
-
+                        console.log('singleGrammyArtistArr: ', singleGrammyArtistArr);
+                        console.log('arrWithGuesses: ', arrWithGuesses);
                     }
-                    if(hangmanGameObj.started && singleGrammyArtistTotalGuesses === 0) {
+
+                    var singleGrammyArtistArrToString = singleGrammyArtistArr.join('');
+                    var arrWithGuessesToString = arrWithGuesses.join('');
+
+                    if(singleGrammyArtistArrToString !== arrWithGuessesToString && singleGrammyArtistTotalGuesses === -1) {
                         console.log('You lose!');
-                        return;
+                    }
+                    else if(singleGrammyArtistArrToString === arrWithGuessesToString) {
+                        console.log('You win!');
                     }
 
                 }
