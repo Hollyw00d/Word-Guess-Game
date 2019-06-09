@@ -46,8 +46,6 @@
         // document.getElementById variables
         this.instructions = document.getElementById('instructions');
         this.subInstructions = document.getElementById('sub-instructions');
-        this.wins = document.getElementById('wins');
-        this.losses = document.getElementById('losses');
         this.grammyWinnerGuess = document.getElementById('grammy-winner-guess');
         this.numberOfGuessesRemaining = document.getElementById('number-of-guesses-remaining');
         this.lettersAlreadyGuessed = document.getElementById('letters-already-guessed');
@@ -118,7 +116,7 @@
                     // If hangman game is over
                     // run code below to restart it
                     if(hangmanGameObj.gameOver) {
-
+                        console.log('Game restarted');
                     }
                 }
 
