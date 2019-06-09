@@ -14,6 +14,7 @@
         ];
 
         this.started = false;
+        this.gameOver = false;
 
         // Grammy Winner Empty Spaces Array
         this.grammyWinnerEmptySpacesArr = [];
@@ -129,14 +130,15 @@
                     var arrWithGuessesToString = arrWithGuesses.join('');
 
                     if(singleGrammyArtistArrToString !== arrWithGuessesToString && singleGrammyArtistTotalGuesses === -1) {
-                        hangmanGameObj.subInstructions.innerHTML = '<strong>* You Lose!</strong>';
+                        hangmanGameObj.subInstructions.innerHTML = '<strong>* You Lose! Press any key to restart game.</strong>';
+                        hangmanGameObj.gameOver = true;
+                        console.log(hangmanGameObj.gameOver);
                     }
                     else if(singleGrammyArtistArrToString === arrWithGuessesToString) {
                         hangmanGameObj.subInstructions.innerHTML = '<strong>* You Win!</strong>';
                     }
 
                 }
-
 
                
             });
