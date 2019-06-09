@@ -129,10 +129,10 @@
                     var arrWithGuessesToString = arrWithGuesses.join('');
 
                     if(singleGrammyArtistArrToString !== arrWithGuessesToString && singleGrammyArtistTotalGuesses === -1) {
-                        console.log('You lose!');
+                        hangmanGameObj.subInstructions.innerHTML = '<strong>* You Lose!</strong>';
                     }
                     else if(singleGrammyArtistArrToString === arrWithGuessesToString) {
-                        console.log('You win!');
+                        hangmanGameObj.subInstructions.innerHTML = '<strong>* You Win!</strong>';
                     }
 
                 }
