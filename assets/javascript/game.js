@@ -2,7 +2,8 @@
 (function() {
     // Function constructor for hangman game
     function HangManGame() {
-        // Seattle Grammy Winners Array
+        // Seattle Grammy Winners Array with Seattle Grammy winner names
+        // and YouTube videos to embed in <iframe ...></frame> tag 
         this.grammyWinnersMultidimensionalArr = [
             ['Brandi Carlile', 'https://www.youtube.com/embed/o8pQLtHTPaI'],
             ['Sound Garden', 'https://www.youtube.com/embed/T0_zzCLLRvE'],
@@ -13,15 +14,18 @@
             ['Ray Charles', 'https://www.youtube.com/embed/QL3EZwSJAh0']
         ];
 
+        // Empty Seattle grammy winners array
         this.grammyWinnersArr = [];
-
         for(var i = 0; i < this.grammyWinnersMultidimensionalArr.length; i++) {
             this.grammyWinnersArr.push(this.grammyWinnersMultidimensionalArr[i][0]); 
         }
 
+        // Loser video showing Beck's "Loser" song
         this.loserVideoUrl = 'https://www.youtube.com/embed/5Z1-5wNjMgs';
 
+        // Game started
         this.started = false;
+        // Game over
         this.gameOver = false;
 
         // Grammy Winner Empty Spaces Array
@@ -36,10 +40,10 @@
         // Array with guesses
         this.arrWithGuesses = [];
 
-        //this.createEmptySpacesForGrammyWinnerGuessArr = [];
-
-        // Properties 
+        // Select random grammy winner arr index
         this.grammyWinnerArrSelected = Math.floor(Math.random() * this.grammyWinnersArr.length);
+
+        // document.getElementById variables
         this.instructions = document.getElementById('instructions');
         this.subInstructions = document.getElementById('sub-instructions');
         this.wins = document.getElementById('wins');
@@ -49,24 +53,22 @@
         this.lettersAlreadyGuessed = document.getElementById('letters-already-guessed');
         this.loadVideo = document.getElementById('load-video');
 
+        // Convert single grramy winner into array
         this.convertSingleGrammyWinnerIntoArr = function() {
             var grammyWinnerSelectionIntoArr = this.grammyWinnersArr[this.grammyWinnerArrSelected].split('');
             return grammyWinnerSelectionIntoArr;
         };
 
+        // Convert single grammy winner into empty spaces array with same length
         this.createEmptySpacesForGrammyWinnerGuessArr = function() {
-
             for(var i = 0; i < (this.convertSingleGrammyWinnerIntoArr().length); i++) {
                 this.grammyWinnerEmptySpacesArr.push(' ___ ');
-            }
-
-            console.log(this.grammyWinnerEmptySpacesArr);
-            
+            } 
             this.grammyWinnerGuess.innerHTML = this.grammyWinnerEmptySpacesArr.join('');
-
             return this.grammyWinnerEmptySpacesArr;
         };
 
+        // Add letters in guesses
         this.addLettersInGuesses = function() {
             
             function arrUnique(arr) {
@@ -94,17 +96,18 @@
 
             document.addEventListener('keyup', function (event) {
 
-                if(!hangmanGameObj.started) {
+                if(!hangmanGameObj.started || hangmanGameObj.gameOver) {
                     hangmanGameObj.grammyWinnerGuess.innerHTML = emptySpaceArr.join('');
                     hangmanGameObj.instructions.classList.remove('h6');
                     hangmanGameObj.instructions.classList.add('h5', 'font-italic');
                     hangmanGameObj.instructions.innerHTML = 'Game Started!';
                     hangmanGameObj.subInstructions.classList.remove('d-none');
                     hangmanGameObj.started = true;
+                    hangmanGameObj.gameOver = false;
                     return;
                 }
 
-                if(hangmanGameObj.started && singleGrammyArtistTotalGuesses > -1) {
+                if(hangmanGameObj.started && singleGrammyArtistTotalGuesses > -1 && !hangmanGameObj.gameOver) {
                     console.log(emptySpaceArr);
                     var key = event.key || event.keyCode;
                     var pos = singleGrammyArtistArr.indexOf(key);
@@ -138,29 +141,26 @@
                     var singleGrammyArtistArrToString = singleGrammyArtistArr.join('');
                     var arrWithGuessesToString = arrWithGuesses.join('');
 
-                    if(singleGrammyArtistArrToString !== arrWithGuessesToString && singleGrammyArtistTotalGuesses === -1) {
+                    if(singleGrammyArtistArrToString !== arrWithGuessesToString && singleGrammyArtistTotalGuesses === -1 && !hangmanGameObj.gameOver) {
                         hangmanGameObj.subInstructions.innerHTML = '<strong>* You Lose! Press any key to restart game.</strong>';
-
                         hangmanGameObj.loadVideo.innerHTML = '<iframe width="560" height="315" src="' + hangmanGameObj.loserVideoUrl + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                        hangmanGameObj.started = false;
+                        hangmanGameObj.gameOver = true;
+                        return;
                     }
-                    else if(singleGrammyArtistArrToString === arrWithGuessesToString) {
+                    else if(singleGrammyArtistArrToString === arrWithGuessesToString && !hangmanGameObj.gameOver) {
                         hangmanGameObj.subInstructions.innerHTML = '<strong>* You Win!</strong>';
                         hangmanGameObj.loadVideo.innerHTML = '<iframe width="560" height="315" src="' + hangmanGameObj.grammyWinnersMultidimensionalArr[hangmanGameObj.grammyWinnerArrSelected][1] + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-                        console.log(typeof hangmanGameObj.grammyWinnerArrSelected);
+                        hangmanGameObj.started = false;
+                        hangmanGameObj.gameOver = true;
+                        return;
                     }
 
                 }
 
                
             });
-
-
-
-
-
-
         };   
-
     }
 
     var hangmanGameObj = new HangManGame();
