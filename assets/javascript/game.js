@@ -19,7 +19,7 @@
             this.grammyWinnersArr.push(this.grammyWinnersMultidimensionalArr[i][0]); 
         }
 
-        this.loserVideoUrl = 'https://www.youtube.com/embed/f70Z3cvrQd0';
+        this.loserVideoUrl = 'https://www.youtube.com/embed/5Z1-5wNjMgs';
 
         this.started = false;
         this.gameOver = false;
