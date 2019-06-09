@@ -4,13 +4,13 @@
     function HangManGame() {
         // Seattle Grammy Winners Array
         this.grammyWinnersMultidimensionalArr = [
-            ['Brandi Carlile', 'blah'],
-            ['Sound Garden', 'blah'],
-            ['Sir Mix-A-Lot', 'blah'],
-            ['Quincy Jones', 'blah'],
-            ['Pearl Jam', 'blah'],
-            ['Macklemore & Ryan Lewis', 'blah'],
-            ['Ray Charles', 'blah']
+            ['Brandi Carlile', 'https://www.youtube.com/embed/o8pQLtHTPaI'],
+            ['Sound Garden', 'https://www.youtube.com/embed/T0_zzCLLRvE'],
+            ['Sir Mix-A-Lot', 'https://www.youtube.com/embed/bgDSkryQjwo'],
+            ['Quincy Jones', 'https://www.youtube.com/embed/k-uQMASvl3A'],
+            ['Pearl Jam', 'https://www.youtube.com/embed/T3oMcrqDn_4'],
+            ['Macklemore & Ryan Lewis', 'https://www.youtube.com/embed/R2nSdVWHiQY'],
+            ['Ray Charles', 'https://www.youtube.com/embed/QL3EZwSJAh0']
         ];
 
         this.grammyWinnersArr = [];
@@ -145,6 +145,7 @@
                     }
                     else if(singleGrammyArtistArrToString === arrWithGuessesToString) {
                         hangmanGameObj.subInstructions.innerHTML = '<strong>* You Win!</strong>';
+                        hangmanGameObj.loadVideo.innerHTML = '<iframe width="560" height="315" src="' + hangmanGameObj.grammyWinnersMultidimensionalArr[0][hangmanGameObj.grammyWinnerArrSelected] + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                     }
 
                 }
