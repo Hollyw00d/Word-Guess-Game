@@ -51,9 +51,14 @@
         this.lettersAlreadyGuessed = document.getElementById('letters-already-guessed');
         this.loadVideo = document.getElementById('load-video');
 
+        // Return random grammy winner arr index
+        this.grammyWinnerArrSelected = function(arr) {
+            return Math.floor(Math.random() * arr.length);
+        }
+
         // Convert single grramy winner into array
         this.convertSingleGrammyWinnerIntoArr = function() {
-            var grammyWinnerSelectionIntoArr = this.grammyWinnersArr[this.grammyWinnerArrSelected].split('');
+            var grammyWinnerSelectionIntoArr = this.grammyWinnersArr[this.grammyWinnerArrSelected(this.grammyWinnersArr)].split('');
             return grammyWinnerSelectionIntoArr;
         };
 
@@ -74,8 +79,7 @@
                 return arr.filter(function(item, index){
                     return arr.indexOf(item) >= index;
                 });
-            }
-            
+            }  
 
             // Save single grammy artist converted into array in variable
             var singleGrammyArtistArr = this.convertSingleGrammyWinnerIntoArr();
@@ -102,15 +106,19 @@
 
             // Start on keyup event handler
             document.addEventListener('keyup', function (event) {
+                var grammyWinnerArrSelected = hangmanGameObj.grammyWinnerArrSelected(hangmanGameObj.grammyWinnersArr);
+
                 // Reset game after winning, lose, or first starting game
                 function reset() {
+                    hangmanGameObj.grammyWinnersArr;
                     hangmanGameObj.grammyWinnerGuess.innerHTML = emptySpaceArr.join('');
                     hangmanGameObj.instructions.classList.remove('h6');
                     hangmanGameObj.instructions.classList.add('h5', 'font-italic');
                     hangmanGameObj.instructions.innerHTML = 'Game Started!';
                     hangmanGameObj.subInstructions.classList.remove('d-none');
-                    console.log(hangmanGameObj.grammyWinnerArrSelected);
                     hangmanGameObj.started = true;
+                    console.log(hangmanGameObj.grammyWinnersArr);
+                    console.log(grammyWinnerArrSelected);
                 }
 
                 if(!hangmanGameObj.started && !hangmanGameObj.gameOver || hangmanGameObj.started && hangmanGameObj.gameOver) {
@@ -162,14 +170,13 @@
                     else if(singleGrammyArtistArrToString === arrWithGuessesToString && !hangmanGameObj.gameOver) {
                         hangmanGameObj.subInstructions.classList.add('d-none');
                         hangmanGameObj.instructions.innerHTML = 'You win!';
-                        hangmanGameObj.loadVideo.innerHTML = '<iframe width="560" height="315" src="' + hangmanGameObj.grammyWinnersMultidimensionalArr[hangmanGameObj.grammyWinnerArrSelected][1] + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                        hangmanGameObj.loadVideo.innerHTML = '<iframe width="560" height="315" src="' + hangmanGameObj.grammyWinnersMultidimensionalArr[hangmanGameObj.grammyWinnerArrSelected(hangmanGameObj.grammyWinnersArr)][1] + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                         hangmanGameObj.started = true;
                         hangmanGameObj.gameOver = true;
                         return;
                     }
 
                 }
-
                
             });
         };   
