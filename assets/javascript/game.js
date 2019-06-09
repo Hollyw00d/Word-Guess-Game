@@ -42,6 +42,8 @@
 
         // Select random grammy winner arr index
         this.grammyWinnerArrSelected = Math.floor(Math.random() * this.grammyWinnersArr.length);
+        // Set grammy winner array selected to 0
+        this.grammyWinnerArrSelectedVar = 0;
 
         // document.getElementById variables
         this.instructions = document.getElementById('instructions');
@@ -102,23 +104,19 @@
             // letters already guessed array
             var lettersAlreadyGuessed = this.lettersAlreadyGuessed;
 
-            console.log(singleGrammyArtistArr);
-
             // Start on keyup event handler
             document.addEventListener('keyup', function (event) {
-                var grammyWinnerArrSelected = hangmanGameObj.grammyWinnerArrSelected(hangmanGameObj.grammyWinnersArr);
-
                 // Reset game after winning, lose, or first starting game
                 function reset() {
-                    hangmanGameObj.grammyWinnersArr;
                     hangmanGameObj.grammyWinnerGuess.innerHTML = emptySpaceArr.join('');
                     hangmanGameObj.instructions.classList.remove('h6');
                     hangmanGameObj.instructions.classList.add('h5', 'font-italic');
                     hangmanGameObj.instructions.innerHTML = 'Game Started!';
                     hangmanGameObj.subInstructions.classList.remove('d-none');
+                    hangmanGameObj.grammyWinnerArrSelectedVar = hangmanGameObj.grammyWinnerArrSelected(hangmanGameObj.grammyWinnersArr);
                     hangmanGameObj.started = true;
-                    console.log(hangmanGameObj.grammyWinnersArr);
-                    console.log(grammyWinnerArrSelected);
+                    console.log(hangmanGameObj.grammyWinnerArrSelectedVar);
+                    console.log(singleGrammyArtistArr);
                 }
 
                 if(!hangmanGameObj.started && !hangmanGameObj.gameOver || hangmanGameObj.started && hangmanGameObj.gameOver) {
@@ -151,9 +149,6 @@
                         });
     
                         grammyWinnerGuess.innerHTML = arrWithGuesses.join('');
-                             
-                        //console.log('singleGrammyArtistArr: ', singleGrammyArtistArr);
-                        //console.log('arrWithGuesses: ', arrWithGuesses);
                     }
 
                     var singleGrammyArtistArrToString = singleGrammyArtistArr.join('');
@@ -177,6 +172,7 @@
                     }
 
                 }
+
                
             });
         };   
