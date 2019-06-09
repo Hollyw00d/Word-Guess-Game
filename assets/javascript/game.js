@@ -93,12 +93,6 @@
             console.log(singleGrammyArtistTotalGuesses);
 
             document.addEventListener('keyup', function (event) {
-                /*
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5Z1-5wNjMgs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-                */
-
 
                 if(!hangmanGameObj.started) {
                     hangmanGameObj.grammyWinnerGuess.innerHTML = emptySpaceArr.join('');
