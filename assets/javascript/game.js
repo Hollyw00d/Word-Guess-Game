@@ -3,15 +3,23 @@
     // Function constructor for hangman game
     function HangManGame() {
         // Seattle Grammy Winners Array
-        this.grammyWinnersArr = [
-            'Brandi Carlile',
-            'Sound Garden',
-            'Sir Mix-A-Lot',
-            'Quincy Jones',
-            'Pearl Jam',
-            'Macklemore & Ryan Lewis',
-            'Ray Charles'
+        this.grammyWinnersMultidimensionalArr = [
+            ['Brandi Carlile', 'blah'],
+            ['Sound Garden', 'blah'],
+            ['Sir Mix-A-Lot', 'blah'],
+            ['Quincy Jones', 'blah'],
+            ['Pearl Jam', 'blah'],
+            ['Macklemore & Ryan Lewis', 'blah'],
+            ['Ray Charles', 'blah']
         ];
+
+        this.grammyWinnersArr = [];
+
+        for(var i = 0; i < this.grammyWinnersMultidimensionalArr.length; i++) {
+            this.grammyWinnersArr.push(this.grammyWinnersMultidimensionalArr[i][0]); 
+        }
+
+        this.loserVideoUrl = 'https://www.youtube.com/embed/f70Z3cvrQd0';
 
         this.started = false;
         this.gameOver = false;
@@ -39,6 +47,7 @@
         this.grammyWinnerGuess = document.getElementById('grammy-winner-guess');
         this.numberOfGuessesRemaining = document.getElementById('number-of-guesses-remaining');
         this.lettersAlreadyGuessed = document.getElementById('letters-already-guessed');
+        this.loadVideo = document.getElementById('load-video');
 
         this.convertSingleGrammyWinnerIntoArr = function() {
             var grammyWinnerSelectionIntoArr = this.grammyWinnersArr[this.grammyWinnerArrSelected].split('');
@@ -84,6 +93,12 @@
             console.log(singleGrammyArtistTotalGuesses);
 
             document.addEventListener('keyup', function (event) {
+                /*
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5Z1-5wNjMgs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                */
+
 
                 if(!hangmanGameObj.started) {
                     hangmanGameObj.grammyWinnerGuess.innerHTML = emptySpaceArr.join('');
@@ -131,8 +146,8 @@
 
                     if(singleGrammyArtistArrToString !== arrWithGuessesToString && singleGrammyArtistTotalGuesses === -1) {
                         hangmanGameObj.subInstructions.innerHTML = '<strong>* You Lose! Press any key to restart game.</strong>';
-                        hangmanGameObj.gameOver = true;
-                        console.log(hangmanGameObj.gameOver);
+
+                        hangmanGameObj.loadVideo.innerHTML = '<iframe width="560" height="315" src="' + hangmanGameObj.loserVideoUrl + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                     }
                     else if(singleGrammyArtistArrToString === arrWithGuessesToString) {
                         hangmanGameObj.subInstructions.innerHTML = '<strong>* You Win!</strong>';
