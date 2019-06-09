@@ -99,7 +99,6 @@
             var lettersAlreadyGuessed = this.lettersAlreadyGuessed;
 
             console.log(singleGrammyArtistArr);
-            console.log(singleGrammyArtistTotalGuesses);
 
             // Start on keyup event handler
             document.addEventListener('keyup', function (event) {
@@ -112,25 +111,14 @@
                     hangmanGameObj.subInstructions.classList.remove('d-none');
                     console.log(hangmanGameObj.grammyWinnerArrSelected);
                     hangmanGameObj.started = true;
-
-                    // If hangman game is over
-                    // run code below to restart it
-                    if(hangmanGameObj.gameOver) {
-                        console.log('Game restarted');
-                    }
                 }
 
-
-                if(!hangmanGameObj.started && !hangmanGameObj.gameOver) {
+                if(!hangmanGameObj.started && !hangmanGameObj.gameOver || hangmanGameObj.started && hangmanGameObj.gameOver) {
                     reset();
                 }
 
-                if(hangmanGameObj.started && hangmanGameObj.gameOver) {
-                    console.log('Game restarted!');
-                }
-
                 if(hangmanGameObj.started && singleGrammyArtistTotalGuesses > -1 && !hangmanGameObj.gameOver) {
-                    console.log(emptySpaceArr);
+                    //console.log(emptySpaceArr);
                     var key = event.key || event.keyCode;
                     var pos = singleGrammyArtistArr.indexOf(key);
                     hangmanGameObj.numberOfGuessesRemaining.innerHTML = singleGrammyArtistTotalGuesses;
@@ -139,7 +127,7 @@
                     lettersGuessed.push(key);
                     var lettersGuessedUnique = arrUnique(lettersGuessed);
                     lettersAlreadyGuessed.innerHTML = lettersGuessedUnique.join(' ');
-                    console.log(lettersGuessedUnique);
+                    //console.log(lettersGuessedUnique);
     
                     if(pos >= 0) {
     
@@ -156,8 +144,8 @@
     
                         grammyWinnerGuess.innerHTML = arrWithGuesses.join('');
                              
-                        console.log('singleGrammyArtistArr: ', singleGrammyArtistArr);
-                        console.log('arrWithGuesses: ', arrWithGuesses);
+                        //console.log('singleGrammyArtistArr: ', singleGrammyArtistArr);
+                        //console.log('arrWithGuesses: ', arrWithGuesses);
                     }
 
                     var singleGrammyArtistArrToString = singleGrammyArtistArr.join('');
