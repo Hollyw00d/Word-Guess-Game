@@ -21,6 +21,12 @@
         // Grammy Winner Indexes Array
         this.grammyWinnerIndexesArr = [];
 
+        // Letters guessed
+        this.lettersGuessed = [];
+
+        // Array with guesses
+        this.arrWithGuesses = [];
+
         //this.createEmptySpacesForGrammyWinnerGuessArr = [];
 
         // Properties 
@@ -64,9 +70,13 @@
             var emptySpaceArr = singleGrammyArtistArr.map(function() {
                 return ' ___ ';
             });
+
+            var arrWithGuesses = this.arrWithGuesses;
+
+            var lettersGuessed = this.lettersGuessed;
+
             var grammyWinnerGuess = this.grammyWinnerGuess;
             var grammyWinnerIndexesArr = this.grammyWinnerIndexesArr;
-            var lettersGuessed = [];
             var lettersAlreadyGuessed = this.lettersAlreadyGuessed;
 
             console.log(singleGrammyArtistArr);
@@ -83,11 +93,18 @@
                     hangmanGameObj.started = true;
                     return;
                 }
-                if(hangmanGameObj.started) {
+
+                if(hangmanGameObj.started && singleGrammyArtistTotalGuesses > -1) {
+                    console.log(emptySpaceArr);
                     var key = event.key || event.keyCode;
                     var pos = singleGrammyArtistArr.indexOf(key);
                     hangmanGameObj.numberOfGuessesRemaining.innerHTML = singleGrammyArtistTotalGuesses;
                     --singleGrammyArtistTotalGuesses;
+
+                    lettersGuessed.push(key);
+                    var lettersGuessedUnique = arrUnique(lettersGuessed);
+                    lettersAlreadyGuessed.innerHTML = lettersGuessedUnique.join(' ');
+                    console.log(lettersGuessedUnique);
     
                     if(pos >= 0) {
     
@@ -97,19 +114,20 @@
                                 emptySpaceArr[index] = winner;  
                             }
                         });
-    
-                        grammyWinnerGuess.innerHTML = emptySpaceArr.map(function(item) {
+
+                        arrWithGuesses = emptySpaceArr.map(function(item) {
                             return item;
-                        }).join('');
+                        });
     
-                        if(lettersGuessed.indexOf(key)) {
-                            lettersGuessed.push(key);   
-                        }
-    
-                        lettersAlreadyGuessed.innerHTML = lettersGuessed.join(' ');
+                        grammyWinnerGuess.innerHTML = arrWithGuesses.join('');
+
+                             
+
                     }
-    
+
+
                 }
+
 
                
             });
