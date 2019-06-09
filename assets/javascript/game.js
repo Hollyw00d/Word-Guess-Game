@@ -123,8 +123,9 @@
                              
 
                     }
-                    if() {
-                        
+                    if(hangmanGameObj.started && singleGrammyArtistTotalGuesses === 0) {
+                        console.log('You lose!');
+                        return;
                     }
 
                 }
