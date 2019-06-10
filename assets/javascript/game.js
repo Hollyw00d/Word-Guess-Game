@@ -115,6 +115,7 @@
                     hangmanGameObj.subInstructions.classList.remove('d-none');
                     hangmanGameObj.grammyWinnerArrSelectedVar = hangmanGameObj.grammyWinnerArrSelected(hangmanGameObj.grammyWinnersArr);
                     hangmanGameObj.started = true;
+                    
                     console.log(hangmanGameObj.grammyWinnerArrSelectedVar);
                     console.log(singleGrammyArtistArr);
                 }
@@ -165,7 +166,7 @@
                     else if(singleGrammyArtistArrToString === arrWithGuessesToString && !hangmanGameObj.gameOver) {
                         hangmanGameObj.subInstructions.classList.add('d-none');
                         hangmanGameObj.instructions.innerHTML = 'You win!';
-                        hangmanGameObj.loadVideo.innerHTML = '<iframe width="560" height="315" src="' + hangmanGameObj.grammyWinnersMultidimensionalArr[hangmanGameObj.grammyWinnerArrSelected(hangmanGameObj.grammyWinnersArr)][1] + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                        hangmanGameObj.loadVideo.innerHTML = '<iframe width="560" height="315" src="' + hangmanGameObj.grammyWinnersMultidimensionalArr[hangmanGameObj.grammyWinnerArrSelectedVar][1] + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                         hangmanGameObj.started = true;
                         hangmanGameObj.gameOver = true;
                         return;
