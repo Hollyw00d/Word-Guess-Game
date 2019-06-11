@@ -42,8 +42,6 @@
 
         // Select random grammy winner arr index
         this.grammyWinnerArrSelected = Math.floor(Math.random() * this.grammyWinnersArr.length);
-        // Set grammy winner array selected to 0
-        this.grammyWinnerArrSelectedVar = 0;
 
         // document.getElementById variables
         this.instructions = document.getElementById('instructions');
@@ -83,6 +81,7 @@
                 });
             }  
 
+
             // Save single grammy artist converted into array in variable
             var singleGrammyArtistArr = this.convertSingleGrammyWinnerIntoArr();
 
@@ -103,6 +102,8 @@
             var grammyWinnerIndexesArr = this.grammyWinnerIndexesArr;
             // letters already guessed array
             var lettersAlreadyGuessed = this.lettersAlreadyGuessed;
+            //
+            var grammyWinnerArrSelected = this.grammyWinnerArrSelected;
 
             // Start on keyup event handler
             document.addEventListener('keyup', function (event) {
@@ -113,11 +114,9 @@
                     hangmanGameObj.instructions.classList.add('h5', 'font-italic');
                     hangmanGameObj.instructions.innerHTML = 'Game Started!';
                     hangmanGameObj.subInstructions.classList.remove('d-none');
-                    hangmanGameObj.grammyWinnerArrSelectedVar = hangmanGameObj.grammyWinnerArrSelected(hangmanGameObj.grammyWinnersArr);
                     hangmanGameObj.started = true;
                     
-                    console.log(hangmanGameObj.grammyWinnerArrSelectedVar);
-                    console.log(singleGrammyArtistArr);
+                    console.log(grammyWinnerArrSelected);
                 }
 
                 if(!hangmanGameObj.started && !hangmanGameObj.gameOver || hangmanGameObj.started && hangmanGameObj.gameOver) {
@@ -166,7 +165,7 @@
                     else if(singleGrammyArtistArrToString === arrWithGuessesToString && !hangmanGameObj.gameOver) {
                         hangmanGameObj.subInstructions.classList.add('d-none');
                         hangmanGameObj.instructions.innerHTML = 'You win!';
-                        hangmanGameObj.loadVideo.innerHTML = '<iframe width="560" height="315" src="' + hangmanGameObj.grammyWinnersMultidimensionalArr[hangmanGameObj.grammyWinnerArrSelectedVar][1] + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                        hangmanGameObj.loadVideo.innerHTML = '<iframe width="560" height="315" src="' + hangmanGameObj.grammyWinnersMultidimensionalArr[hangmanGameObj.grammyWinnerArrSelected][1] + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                         hangmanGameObj.started = true;
                         hangmanGameObj.gameOver = true;
                         return;
