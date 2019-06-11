@@ -124,6 +124,10 @@
                     reset();
                 }
 
+                if(!hangmanGameObj.started && hangmanGameObj.gameOver) {
+                    console.log('restart game');
+                }
+
                 if(hangmanGameObj.started && singleGrammyArtistTotalGuesses > -1 && !hangmanGameObj.gameOver) {
                     //console.log(emptySpaceArr);
                     var key = event.key || event.keyCode;
@@ -159,7 +163,7 @@
                         hangmanGameObj.subInstructions.classList.add('d-none');
                         hangmanGameObj.instructions.innerHTML = 'You lose!';
                         hangmanGameObj.loadVideo.innerHTML = '<iframe width="560" height="315" src="' + hangmanGameObj.loserVideoUrl + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-                        hangmanGameObj.started = true;
+                        hangmanGameObj.started = false;
                         hangmanGameObj.gameOver = true;
                         return;
                     }
@@ -167,7 +171,7 @@
                         hangmanGameObj.subInstructions.classList.add('d-none');
                         hangmanGameObj.instructions.innerHTML = 'You win!';
                         hangmanGameObj.loadVideo.innerHTML = '<iframe width="560" height="315" src="' + hangmanGameObj.grammyWinnersMultidimensionalArr[hangmanGameObj.grammyWinnerArrSelected][1] + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-                        hangmanGameObj.started = true;
+                        hangmanGameObj.started = false;
                         hangmanGameObj.gameOver = true;
                         return;
                     }
