@@ -116,6 +116,7 @@
                     hangmanGameObj.instructions.innerHTML = 'Game Started!';
                     hangmanGameObj.subInstructions.classList.remove('d-none');
                     hangmanGameObj.started = true;
+                    hangmanGameObj.gameOver = false;
                     
                     console.log(grammyWinnerArrSelected);
                 }
@@ -125,7 +126,7 @@
                 }
 
                 if(!hangmanGameObj.started && hangmanGameObj.gameOver) {
-                    console.log('restart game');
+                    location.reload();
                 }
 
                 if(hangmanGameObj.started && singleGrammyArtistTotalGuesses > -1 && !hangmanGameObj.gameOver) {
