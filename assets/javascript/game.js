@@ -52,13 +52,13 @@
         this.loadVideo = document.getElementById('load-video');
 
         // Return random grammy winner arr index
-        this.grammyWinnerArrSelected = function(arr) {
-            return Math.floor(Math.random() * arr.length);
-        }
+        // this.grammyWinnerArrSelected = function(arr) {
+        //     return Math.floor(Math.random() * arr.length);
+        // }
 
         // Convert single grramy winner into array
         this.convertSingleGrammyWinnerIntoArr = function() {
-            var grammyWinnerSelectionIntoArr = this.grammyWinnersArr[this.grammyWinnerArrSelected(this.grammyWinnersArr)].split('');
+            var grammyWinnerSelectionIntoArr = this.grammyWinnersArr[this.grammyWinnerArrSelected].split('');
             return grammyWinnerSelectionIntoArr;
         };
 
@@ -104,6 +104,7 @@
             var lettersAlreadyGuessed = this.lettersAlreadyGuessed;
             //
             var grammyWinnerArrSelected = this.grammyWinnerArrSelected;
+            console.log(singleGrammyArtistArr);
 
             // Start on keyup event handler
             document.addEventListener('keyup', function (event) {
